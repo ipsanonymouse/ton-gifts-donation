@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { TelegramProvider } from "@/components/telegram-provider"
 import { TonConnectProvider } from "@/components/ton-connect-provider"
 import TelegramWebAppScript from "./telegram-web-app-script"
+import { WebApp } from '@twa-dev/sdk';
+import { useEffect } from 'react';
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] })
 
@@ -19,6 +21,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  useEffect(() => {
+    WebApp.ready();
+  }, []);
+
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground`}>
